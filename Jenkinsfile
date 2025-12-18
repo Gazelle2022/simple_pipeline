@@ -1,18 +1,14 @@
 pipeline {
     agent any
 
-    triggers {
-        githubPush()   
-    }
-//test for github webhook trigger
     stages {
-
-        stage('push') {
+        stage('Checkout') {
             steps {
+                // Clone le repo manuellement
                 git branch: 'main', url: 'https://github.com/Gazelle2022/simple_pipeline.git'
             }
         }
-    stages {
+
         stage('Hello') {
             steps {
                 echo 'Hello Jenkins!'
@@ -31,5 +27,4 @@ pipeline {
             echo 'Pipeline finished.'
         }
     }
-}
 }
