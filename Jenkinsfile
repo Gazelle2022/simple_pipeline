@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Clone le repo manuellement
+                // Clone le repo
                 git branch: 'main', url: 'https://github.com/Gazelle2022/simple_pipeline.git'
             }
         }
