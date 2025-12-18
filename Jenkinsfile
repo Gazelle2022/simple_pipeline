@@ -1,24 +1,25 @@
 pipeline {
-    agent any
-    triggers { githubPush() }
+    agent {
+        docker { image 'node:16-alpine' }
+    }
 
     stages {
         stage('Checkout') {
             steps {
-                // Clone le repo
+                // Clone le dépôt GitHub
                 git branch: 'main', url: 'https://github.com/Gazelle2022/simple_pipeline.git'
+            }
+        }
+
+        stage('Test Node') {
+            steps {
+                sh 'node --version'
             }
         }
 
         stage('Hello') {
             steps {
-                echo 'Hello Jenkins!'
-            }
-        }
-
-        stage('Test Build') {
-            steps {
-                echo 'This is a simple pipeline test.'
+                echo 'Hello Jenkins inside Docker!'
             }
         }
     }
@@ -29,3 +30,4 @@ pipeline {
         }
     }
 }
+
